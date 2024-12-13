@@ -99,10 +99,21 @@ addShape(shape) {
     this.updateShapeContainer();
 }
 
+removeShape(i) {
+    if (i >= 0 && i < this.shapes.length) {
+        this.shapes.splice(i, 1);
+        this.updateShapeContainer();
+    } else {
+        console.error("can't find shape to remove")
+    }
+}
+
 updateShapeContainer() {
     this.shapeContainer.innerHTML = '';
-    this.shapes.forEach(shape => {
-        this.shapeContainer.appendChild(shape.draw())
+    this.shapes.forEach((shape, i) => {
+        const shapeEl = shape.draw();
+        shapeEl.addEventListener('click', () => this.removeShape(i));
+        this.shapeContainer.appendChild(shapeEl)
     })
 }
 }
