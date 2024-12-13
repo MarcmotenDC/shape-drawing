@@ -100,6 +100,7 @@ addShape(shape) {
 }
 
 updateShapeContainer() {
+    this.shapeContainer.innerHTML = '';
     this.shapes.forEach(shape => {
         this.shapeContainer.appendChild(shape.draw())
     })
